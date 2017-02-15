@@ -78,15 +78,13 @@ function putItem(id, logo, lat, lng, route) {
 }
 
 function queryMostCurrentTime(callback) {
-    
+
     fetchBusInfo();
 
     var params = {
         TableName : table,
-        //ProjectionExpression:"#id, logo, lat, lng, route",
         FilterExpression: "#timestamp = :time",
         ExpressionAttributeNames:{
-            //"#id": "id",
             "#timestamp": "timestamp",
         },
         ExpressionAttributeValues: {
@@ -108,9 +106,9 @@ function queryMostCurrentTime(callback) {
                 callback(null, responseErr);
             }
         } else {
-            console.log("Scan succeeded.");
+
             data.Items.forEach(function(item) {
-                console.log(item);
+                //console.log(item);
             });
             if (callback) {
                 const responseOk = {
